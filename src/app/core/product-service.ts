@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private http = inject(HttpClient); 
+  private http = inject(HttpClient);
 
-  private API_URL = 'https://fakestoreapi.com/products'; 
+  private API_URL = 'https://fakestoreapi.com/products';
 
-  constructor() {}
+  constructor() { }
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.API_URL);
@@ -20,5 +20,13 @@ export class ApiService {
 
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.API_URL}/${id}`);
+  }
+
+  getCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.API_URL}/categories`);
+  }
+
+  getProductsByCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.API_URL}/category/${category}`);
   }
 }

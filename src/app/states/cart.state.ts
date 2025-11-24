@@ -14,17 +14,17 @@ export interface CartStateModel {
 // Actions
 export class AddToCart {
   static readonly type = '[Cart] Add to Cart';
-  constructor(public product: Product) {}
+  constructor(public product: Product) { }
 }
 
 export class RemoveFromCart {
   static readonly type = '[Cart] Remove from Cart';
-  constructor(public productId: number) {}
+  constructor(public productId: number) { }
 }
 
 export class UpdateQuantity {
   static readonly type = '[Cart] Update Quantity';
-  constructor(public productId: number, public quantity: number) {}
+  constructor(public productId: number, public quantity: number) { }
 }
 
 @State<CartStateModel>({
@@ -51,8 +51,8 @@ export class CartState {
   }
 
   @Action(AddToCart)
-  addToCart(ctx: StateContext<CartStateModel>, action: AddToCart) {
-    const state = ctx.getState();
+  addToCart(context: StateContext<CartStateModel>, action: AddToCart) {
+    const state = context.getState();
     const existingItem = state.items.find((i) => i.product.id === action.product.id);
 
     if (existingItem) {
@@ -61,27 +61,27 @@ export class CartState {
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
-      ctx.patchState({ items: updatedItems });
+      context.patchState({ items: updatedItems });
     } else {
-      ctx.patchState({
+      context.patchState({
         items: [...state.items, { product: action.product, quantity: 1 }],
       });
     }
   }
 
   @Action(RemoveFromCart)
-  removeFromCart(ctx: StateContext<CartStateModel>, action: RemoveFromCart) {
-    const state = ctx.getState();
+  removeFromCart(context: StateContext<CartStateModel>, action: RemoveFromCart) {
+    const state = context.getState();
     const updatedItems = state.items.filter((item) => item.product.id !== action.productId);
-    ctx.patchState({ items: updatedItems });
+    context.patchState({ items: updatedItems });
   }
 
   @Action(UpdateQuantity)
-  updateQuantity(ctx: StateContext<CartStateModel>, action: UpdateQuantity) {
-    const state = ctx.getState();
+  updateQuantity(context: StateContext<CartStateModel>, action: UpdateQuantity) {
+    const state = context.getState();
     const updatedItems = state.items.map((item) =>
       item.product.id === action.productId ? { ...item, quantity: action.quantity } : item
     );
-    ctx.patchState({ items: updatedItems });
+    context.patchState({ items: updatedItems });
   }
 }
