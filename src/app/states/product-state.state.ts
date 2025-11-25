@@ -1,4 +1,4 @@
-// Actions->StateModel->State->Selector->Action
+// ActionsDefinition->StateModel->State->Selector->Action
 
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
@@ -60,6 +60,12 @@ export class ProductsState {
   @Selector()
   static selectCategories(state: ProductsStateModel) {
     return state.categories;
+  }
+
+  @Selector()
+  static selectTopRatedProducts(state: ProductsStateModel) {
+    // return state.products.filter((p) => p.rating && p.rating.rate > 4.5);
+      return state.products.filter((p) => p.rating.rate > 4.5);
   }
 
   //  Actions

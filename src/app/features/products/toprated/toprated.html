@@ -1,0 +1,26 @@
+<section class="products-container">
+    @for (product of products(); track product.id) {
+    <div class="product-card" (click)="goToDetails(product.id)">
+        <div class="image-container">
+            <img [src]="product.image" [alt]="product.title" loading="lazy" />
+        </div>
+        <div class="card-content">
+            <div class="header-row">
+                <span class="category">{{ product.category }}</span>
+                <div class="rating-badge">
+                    <span class="star">★</span>
+                    <span class="rate">{{ product.rating.rate }}</span>
+                    <span class="count">({{ product.rating.count }})</span>
+                </div>
+            </div>
+
+            <h3 class="title" [title]="product.title">{{ product.title }}</h3>
+
+            <div class="card-footer">
+                <span class="price">{{ product.price | currency }}</span>
+                <!-- <button class="view-btn">View Details</button> -->
+            </div>
+        </div>
+    </div>
+    }
+</section>
