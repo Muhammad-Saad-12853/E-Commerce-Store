@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-toprated',
   imports: [CurrencyPipe],
-  templateUrl: './toprated.html',
-  styleUrl: './toprated.css',
+  templateUrl: 'toprated.html',
+  styleUrl: 'toprated.css',
 })
 export class Toprated implements OnInit {
   private store = inject(Store);

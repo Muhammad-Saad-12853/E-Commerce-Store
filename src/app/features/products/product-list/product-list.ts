@@ -1,15 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, IMAGE_LOADER } from '@angular/common';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { GetProducts, GetProductsByCategory, ProductsState } from '../../../states/product-state.state';
+import { GetProducts, GetProductsByCategory, ProductsState, ClearProducts } from '../../../states/product-state.state';
 import { Product } from '../../../models/product';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
   imports: [CurrencyPipe],
-  templateUrl: './product-list.html',
+  templateUrl: 'product-list.html',
   styleUrl: './product-list.css',
 })
 export class ProductList implements OnInit {
@@ -21,6 +21,7 @@ export class ProductList implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.store.dispatch(new ClearProducts());
       const category = params.get('category');
       if (category) {
         this.store.dispatch(new GetProductsByCategory(category));
@@ -28,6 +29,7 @@ export class ProductList implements OnInit {
         this.store.dispatch(new GetProducts());
       }
     });
+    // this.store.dispatch(new GetProducts())
   }
 
   goToDetails(id: number) {

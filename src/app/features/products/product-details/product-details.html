@@ -1,7 +1,7 @@
 @if(product()) {
 <section class="product-details-container">
   <div class="product-image">
-    <img [src]="product()?.image" [alt]="product()?.title" />
+    <img [src]="product()?.image" [alt]="product()?.title" loading="lazy"/>
   </div>
   <div class="product-info">
     <p class="product-category">{{product()?.category}}</p>

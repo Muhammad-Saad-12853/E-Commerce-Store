@@ -25,6 +25,10 @@ export class GetProductsByCategory {
   constructor(public category: string) { }
 }
 
+export class ClearProducts {
+  static readonly type = '[Product] Clear Products';
+}
+
 //  State Model
 export interface ProductsStateModel {
   products: Product[];
@@ -65,7 +69,7 @@ export class ProductsState {
   @Selector()
   static selectTopRatedProducts(state: ProductsStateModel) {
     // return state.products.filter((p) => p.rating && p.rating.rate > 4.5);
-      return state.products.filter((p) => p.rating.rate > 4.5);
+    return state.products.filter((p) => p.rating.rate > 4.5);
   }
 
   //  Actions
@@ -103,5 +107,10 @@ export class ProductsState {
         context.patchState({ products });
       })
     );
+  }
+
+  @Action(ClearProducts)
+  clearProducts(context: StateContext<ProductsStateModel>) {
+    context.patchState({ products: [] });
   }
 }

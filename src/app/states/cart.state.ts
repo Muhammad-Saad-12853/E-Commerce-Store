@@ -57,9 +57,7 @@ export class CartState {
 
     if (existingItem) {
       const updatedItems = state.items.map((item) =>
-        item.product.id === action.product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+        item.product.id === action.product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
       context.patchState({ items: updatedItems });
     } else {

@@ -20,6 +20,7 @@ export class Cart {
   }
 
   updateQuantity(productId: number, quantity: number) {
+    // Checking the negative qauntity and value 
     if (quantity < 1) {
       return;
     }

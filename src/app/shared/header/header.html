@@ -1,7 +1,7 @@
 <header class="header-container">
   <div class="brand" routerLink="">E-Commerce</div>
   <div class="search-box">
-    <input type="text" placeholder="Search products..."/>
+    <input type="text" placeholder="Search products..." [(ngModel)]="searchquery"/>
   </div>
   <div class="header-actions">
     <button class="btn cart-btn" routerLink="/toprated">Top Rated</button>

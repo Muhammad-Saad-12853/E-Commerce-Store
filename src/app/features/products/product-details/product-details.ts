@@ -10,8 +10,8 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-product-details',
   imports: [CurrencyPipe],
-  templateUrl: './product-details.html',
-  styleUrl: './product-details.css',
+  templateUrl: 'product-details.html',
+  styleUrl: 'product-details.css',
 })
 export class ProductDetails {
   private store = inject(Store);

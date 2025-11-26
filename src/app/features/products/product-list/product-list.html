@@ -3,7 +3,7 @@
   <div class="product-card" (click)="goToDetails(product.id)">
     <div class="image-container">
       <!-- <img [src]="product.image" [alt]="product.title" loading="lazy" /> -->
-      <img [src]="product.image" [alt]="product.title" />
+      <img [src]="product.image" [alt]="product.title" loading="lazy"/>
     </div>
     <div class="card-content">
       <span class="category">{{ product.category }}</span>

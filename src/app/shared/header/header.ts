@@ -7,11 +7,11 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-header',
   imports: [RouterLink,FormsModule],
-  templateUrl: './header.html',
-  styleUrl: './header.css',
+  templateUrl: 'header.html',
+  styleUrl: 'header.css',
 })
 export class Header {
   private store = inject(Store);
   cartItemCount = this.store.selectSignal(CartState.getItemCount);
-  searchquery=""
+  searchquery=''
 }
